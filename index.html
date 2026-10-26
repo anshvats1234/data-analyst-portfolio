@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gemini Chatbot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">✦</span>
+        <div>
+          <h1>AI Chatbot</h1>
+          <small>Powered by Gemini · {{ model }}</small>
+        </div>
+      </div>
+      <nav class="actions">
+        <button class="btn" data-panel="history" title="Last chats">History</button>
+        <button class="btn" data-panel="stats" title="NumPy statistics">Stats</button>
+        <button class="btn" data-panel="charts" title="Seaborn / Matplotlib charts">Charts</button>
+        <button class="btn" data-panel="models" title="Available models">Models</button>
+        <button class="btn" id="reset" title="Start a new conversation">New chat</button>
+        <button class="btn icon" id="theme" title="Toggle dark mode" aria-label="Toggle theme">◐</button>
+      </nav>
+    </header>
+
+    <!-- Messages -->
+    <main id="chat" class="chat" aria-live="polite">
+      <section class="welcome" id="welcome">
+        <div class="logo big">✦</div>
+        <h2>How can I help you today?</h2>
+        <p>Ask me anything. I explain things in simple English.</p>
+        <div class="chips">
+          <button class="chip">What is a Python list?</button>
+          <button class="chip">Explain photosynthesis simply</button>
+          <button class="chip">Give me 3 study tips</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Input -->
+    <form id="form" class="composer" autocomplete="off">
+      <textarea id="input" rows="1" placeholder="Type your question… (Enter to send, Shift+Enter for new line)"></textarea>
+      <button id="send" class="send" type="submit" aria-label="Send">➤</button>
+    </form>
+  </div>
+
+  <!-- Slide-in panel for history / stats / charts / models -->
+  <aside id="panel" class="panel" aria-hidden="true">
+    <div class="panel-head">
+      <h3 id="panel-title"></h3>
+      <button class="btn icon" id="panel-close" aria-label="Close">✕</button>
+    </div>
+    <div id="panel-body" class="panel-body"></div>
+  </aside>
+  <div id="backdrop" class="backdrop"></div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
